@@ -7,6 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeContactForm();
     initializeMobileMenu();
     initializeTypingAnimation();
+    
+    // Initialize GSAP animations if available
+    if (typeof gsap !== 'undefined') {
+        initializeGSAPAnimations();
+    }
 });
 
 // Navigation functionality
@@ -602,3 +607,222 @@ function initializePrintStyles() {
 
 // Initialize print functionality
 initializePrintStyles();
+
+// GSAP Animations
+function initializeGSAPAnimations() {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // About section entrance animation
+    const aboutTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: '.about',
+            start: 'top 80%',
+            end: 'bottom 20%',
+            toggleActions: 'play none none reverse'
+        }
+    });
+    
+    // Animate section title and divider
+    aboutTimeline.from('.about-title-animate', {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out'
+    })
+    .from('.about-divider-animate', {
+        scaleX: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+    }, '-=0.5');
+    
+    // Animate profile section
+    gsap.from('.profile-image-container', {
+        scrollTrigger: {
+            trigger: '.about-profile',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        scale: 0.8,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'back.out(1.7)'
+    });
+    
+    // Animate profile rings with stagger
+    gsap.from('.ring', {
+        scrollTrigger: {
+            trigger: '.about-profile',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        scale: 0,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'back.out(1.7)'
+    });
+    
+    // Animate profile details
+    gsap.from('.profile-details > *', {
+        scrollTrigger: {
+            trigger: '.about-profile',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power2.out'
+    });
+    
+    // Animate story content
+    gsap.from('.story-content', {
+        scrollTrigger: {
+            trigger: '.about-story',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        x: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out'
+    });
+    
+    // Animate story paragraphs with typewriter effect
+    gsap.from('.story-paragraph', {
+        scrollTrigger: {
+            trigger: '.about-story',
+            start: 'top 70%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.3,
+        ease: 'power2.out'
+    });
+    
+    // Animate CTA button
+    gsap.from('.cta-button', {
+        scrollTrigger: {
+            trigger: '.story-cta',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.6,
+        ease: 'back.out(1.7)'
+    });
+    
+    // Animate achievement cards
+    gsap.from('.achievement-card', {
+        scrollTrigger: {
+            trigger: '.about-achievements',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+    
+    // Animate timeline items
+    gsap.from('.timeline-item', {
+        scrollTrigger: {
+            trigger: '.about-education',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+    
+    // Animate timeline line
+    gsap.from('.education-timeline::before', {
+        scrollTrigger: {
+            trigger: '.about-education',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        scaleY: 0,
+        transformOrigin: 'top',
+        duration: 1.5,
+        ease: 'power2.out'
+    });
+    
+    // Hover animations for interactive elements
+    document.querySelectorAll('.achievement-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                scale: 1.05,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                scale: 1,
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
+    
+    // Continuous animations for glowing elements
+    gsap.to('.profile-glow', {
+        rotation: 360,
+        duration: 8,
+        repeat: -1,
+        ease: 'none'
+    });
+    
+    gsap.to('.achievement-glow', {
+        rotation: 360,
+        duration: 6,
+        repeat: -1,
+        ease: 'none'
+    });
+    
+    // Parallax effect for background elements
+    gsap.to('.about::before', {
+        yPercent: -50,
+        ease: 'none',
+        scrollTrigger: {
+            trigger: '.about',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+        }
+    });
+    
+    // Add subtle floating animation to profile image
+    gsap.to('.profile-image', {
+        y: -10,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut'
+    });
+    
+    // Animate highlights on scroll
+    gsap.from('.highlight', {
+        scrollTrigger: {
+            trigger: '.story-text',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        backgroundSize: '0% 100%',
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+}

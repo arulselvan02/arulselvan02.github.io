@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -81,59 +85,114 @@
     <section id="about" class="about">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">About Me</h2>
-                <div class="section-divider"></div>
+                <h2 class="section-title about-title-animate">About Me</h2>
+                <div class="section-divider about-divider-animate"></div>
             </div>
             <div class="about-content">
-                <div class="about-text">
-                    <p class="about-paragraph">
-                        I'm a final-year Electrical & Electronics Engineering student with a strong interest 
-                        in software development and a solid foundation in logical thinking. I'm passionate 
-                        about creating innovative solutions and building exceptional digital experiences.
-                    </p>
-                    <p class="about-paragraph">
-                        My journey combines electrical engineering principles with software development skills,
-                        focusing on IoT systems, embedded programming, and web technologies. I'm looking to 
-                        start a career where I can contribute to impactful tech solutions.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <h3 class="stat-number">8.4</h3>
-                            <p class="stat-label">Current CGPA</p>
+                <div class="about-main">
+                    <div class="about-profile">
+                        <div class="profile-image-container">
+                            <div class="profile-image">
+                                <div class="profile-glow"></div>
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="profile-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
                         </div>
-                        <div class="stat-item">
-                            <h3 class="stat-number">72%</h3>
-                            <p class="stat-label">TCS NQT Score</p>
+                        <div class="profile-details">
+                            <div class="profile-badge">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Final Year Student</span>
+                            </div>
+                            <h3 class="profile-name">Arulselvan M</h3>
+                            <p class="profile-title">Software Developer & EEE Student</p>
                         </div>
-                        <div class="stat-item">
-                            <h3 class="stat-number">3+</h3>
-                            <p class="stat-label">Certificates</p>
+                    </div>
+                    <div class="about-story">
+                        <div class="story-content">
+                            <div class="story-text">
+                                <p class="story-paragraph animate-text">
+                                    I'm a final-year Electrical & Electronics Engineering student with a 
+                                    <span class="highlight">strong passion for software development</span> and 
+                                    innovative problem-solving. My journey bridges the gap between hardware 
+                                    and software, creating unique solutions that make a difference.
+                                </p>
+                                <p class="story-paragraph animate-text">
+                                    Driven by curiosity and a <span class="highlight">solid foundation in logical thinking</span>, 
+                                    I'm ready to contribute to impactful tech solutions while continuously learning 
+                                    and growing in the ever-evolving world of technology.
+                                </p>
+                            </div>
+                            <div class="story-cta">
+                                <a href="#projects" class="cta-button">
+                                    <span>Explore My Work</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="about-info">
-                    <div class="info-card">
-                        <h3 class="info-title">Education</h3>
-                        <div class="info-item">
-                            <h4>B.E. Electrical & Electronics Engineering</h4>
-                            <p>Dr. Mahalingam College Of Engineering & Technology, Pollachi</p>
-                            <p class="info-meta">11/2022 - Present | CGPA: 8.4</p>
+                <div class="about-achievements">
+                    <div class="achievements-grid">
+                        <div class="achievement-card card-1">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h3 class="achievement-number">8.4</h3>
+                                <p class="achievement-label">Current CGPA</p>
+                            </div>
+                            <div class="achievement-glow"></div>
                         </div>
-                        <div class="info-item">
-                            <h4>Higher Secondary School</h4>
-                            <p>Kongu Vellalar Matric Higher Secondary School</p>
-                            <p class="info-meta">2021 - 2022 | 86%</p>
+                        <div class="achievement-card card-2">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h3 class="achievement-number">72%</h3>
+                                <p class="achievement-label">TCS NQT Score</p>
+                            </div>
+                            <div class="achievement-glow"></div>
+                        </div>
+                        <div class="achievement-card card-3">
+                            <div class="achievement-icon">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h3 class="achievement-number">3+</h3>
+                                <p class="achievement-label">Certificates</p>
+                            </div>
+                            <div class="achievement-glow"></div>
                         </div>
                     </div>
-                    <div class="info-card">
-                        <h3 class="info-title">Interests</h3>
-                        <ul class="interest-list">
-                            <li>IoT Systems</li>
-                            <li>Embedded Programming</li>
-                            <li>Web Development</li>
-                            <li>Java Programming</li>
-                            <li>Data Structures & Algorithms</li>
-                        </ul>
+                </div>
+                <div class="about-education">
+                    <div class="education-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2022 - Present</div>
+                                <h4 class="timeline-title">B.E. Electrical & Electronics Engineering</h4>
+                                <p class="timeline-description">Dr. Mahalingam College Of Engineering & Technology, Pollachi</p>
+                                <div class="timeline-badge">CGPA: 8.4</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-icon">
+                                <i class="fas fa-school"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-date">2021 - 2022</div>
+                                <h4 class="timeline-title">Higher Secondary School</h4>
+                                <p class="timeline-description">Kongu Vellalar Matric Higher Secondary School</p>
+                                <div class="timeline-badge">86%</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
