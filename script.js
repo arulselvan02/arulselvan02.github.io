@@ -83,7 +83,7 @@ function initializeScrollEffects() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.project-card, .skill-item, .about-stats, .contact-item');
+    const animateElements = document.querySelectorAll('.project-card, .skill-item, .about-stats, .contact-item, .certificate-card, .achievement-item');
     animateElements.forEach(element => {
         observer.observe(element);
     });
@@ -97,7 +97,9 @@ function initializeAnimations() {
         .project-card,
         .skill-item,
         .about-stats,
-        .contact-item {
+        .contact-item,
+        .certificate-card,
+        .achievement-item {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.6s ease;
@@ -106,41 +108,71 @@ function initializeAnimations() {
         .project-card.animate,
         .skill-item.animate,
         .about-stats.animate,
-        .contact-item.animate {
+        .contact-item.animate,
+        .certificate-card.animate,
+        .achievement-item.animate {
             opacity: 1;
             transform: translateY(0);
         }
         
-        .project-card:nth-child(2).animate {
+        .project-card:nth-child(1).animate {
             transition-delay: 0.1s;
+        }
+        
+        .project-card:nth-child(2).animate {
+            transition-delay: 0.2s;
         }
         
         .project-card:nth-child(3).animate {
-            transition-delay: 0.2s;
-        }
-        
-        .project-card:nth-child(4).animate {
             transition-delay: 0.3s;
         }
         
-        .skill-item:nth-child(2).animate {
+        .skill-item:nth-child(1).animate {
             transition-delay: 0.1s;
         }
         
-        .skill-item:nth-child(3).animate {
+        .skill-item:nth-child(2).animate {
             transition-delay: 0.2s;
         }
         
-        .skill-item:nth-child(4).animate {
+        .skill-item:nth-child(3).animate {
             transition-delay: 0.3s;
         }
         
-        .skill-item:nth-child(5).animate {
+        .skill-item:nth-child(4).animate {
             transition-delay: 0.4s;
         }
         
-        .skill-item:nth-child(6).animate {
+        .skill-item:nth-child(5).animate {
             transition-delay: 0.5s;
+        }
+        
+        .skill-item:nth-child(6).animate {
+            transition-delay: 0.6s;
+        }
+        
+        .certificate-card:nth-child(1).animate {
+            transition-delay: 0.1s;
+        }
+        
+        .certificate-card:nth-child(2).animate {
+            transition-delay: 0.2s;
+        }
+        
+        .certificate-card:nth-child(3).animate {
+            transition-delay: 0.3s;
+        }
+        
+        .achievement-item:nth-child(1).animate {
+            transition-delay: 0.1s;
+        }
+        
+        .achievement-item:nth-child(2).animate {
+            transition-delay: 0.2s;
+        }
+        
+        .achievement-item:nth-child(3).animate {
+            transition-delay: 0.3s;
         }
     `;
     document.head.appendChild(style);
@@ -295,8 +327,8 @@ function initializeMobileMenu() {
 // Typing animation for hero section
 function initializeTypingAnimation() {
     const heroSubtitle = document.querySelector('.hero-subtitle');
-    const text = 'Software Developer & Final Year Engineering Student';
-    const speed = 100;
+    const text = 'B.E. Electrical & Electronics Engineering Student';
+    const speed = 80;
     let index = 0;
     
     function typeWriter() {
@@ -304,6 +336,30 @@ function initializeTypingAnimation() {
             heroSubtitle.textContent = text.substring(0, index + 1);
             index++;
             setTimeout(typeWriter, speed);
+        } else {
+            // Add blinking cursor effect
+            heroSubtitle.innerHTML = text + '<span class="cursor">|</span>';
+            
+            // Add cursor blinking CSS
+            const cursorStyle = document.createElement('style');
+            cursorStyle.textContent = `
+                .cursor {
+                    animation: blink 1s infinite;
+                    color: var(--primary-purple);
+                    font-weight: bold;
+                }
+                
+                @keyframes blink {
+                    0%, 50% { opacity: 1; }
+                    51%, 100% { opacity: 0; }
+                }
+            `;
+            document.head.appendChild(cursorStyle);
+            
+            // Remove cursor after 3 seconds
+            setTimeout(() => {
+                heroSubtitle.textContent = text;
+            }, 3000);
         }
     }
     

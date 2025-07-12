@@ -7,6 +7,8 @@ This is a personal portfolio website for Arulselvan M, a software developer. The
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Theme: Purple-themed design with enhanced animations and effects (based on uploaded reference images)
+Content: Portfolio updated with authentic information from resume (Arulselvan M, EEE student)
 
 ## System Architecture
 
