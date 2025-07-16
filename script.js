@@ -88,7 +88,7 @@ function initializeScrollEffects() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.project-card, .skill-item, .about-stats, .contact-item, .certificate-card, .achievement-item');
+    const animateElements = document.querySelectorAll('.project-card, .skill-item, .about-stats, .contact-item, .certificate-card, .achievement-item, .coding-profile-card');
     animateElements.forEach(element => {
         observer.observe(element);
     });
@@ -104,10 +104,11 @@ function initializeAnimations() {
         .about-stats,
         .contact-item,
         .certificate-card,
-        .achievement-item {
-            opacity: 0;
+        .achievement-item,
+        .coding-profile-card {
+            opacity: 1;
             transform: translateY(30px);
-            transition: all 0.6s ease;
+            transition: all 0.6s cubic-bezier(0.4,0,0.2,1);
         }
         
         .project-card.animate,
@@ -115,10 +116,15 @@ function initializeAnimations() {
         .about-stats.animate,
         .contact-item.animate,
         .certificate-card.animate,
-        .achievement-item.animate {
+        .achievement-item.animate,
+        .coding-profile-card.animate {
             opacity: 1;
             transform: translateY(0);
         }
+        .coding-profile-card:nth-child(1).animate { transition-delay: 0.1s; }
+        .coding-profile-card:nth-child(2).animate { transition-delay: 0.2s; }
+        .coding-profile-card:nth-child(3).animate { transition-delay: 0.3s; }
+        .coding-profile-card:nth-child(4).animate { transition-delay: 0.4s; }
         
         .project-card:nth-child(1).animate {
             transition-delay: 0.1s;
@@ -273,13 +279,9 @@ function initializeContactForm() {
             submitButton.disabled = false;
             
             // Show success message
-            successMessage.classList.add('show');
+            alert('Please contact via mobile or email');
             contactForm.reset();
             
-            // Hide success message after 5 seconds
-            setTimeout(() => {
-                successMessage.classList.remove('show');
-            }, 5000);
         }, 2000);
     });
     
@@ -437,7 +439,7 @@ function initializeParticles() {
             animation: float-particle ${Math.random() * 10 + 5}s infinite linear;
             left: ${Math.random() * 100}%;
             top: ${Math.random() * 100}%;
-            opacity: ${Math.random() * 0.8 + 0.2};
+            opacity: 1;
         `;
         particlesContainer.appendChild(particle);
     }
@@ -610,6 +612,39 @@ initializePrintStyles();
 
 // GSAP Animations
 function initializeGSAPAnimations() {
+    // Animate coding profile cards
+    gsap.from('.coding-profile-card', {
+        scrollTrigger: {
+            trigger: '.coding-profiles',
+            start: 'top 80%',
+            toggleActions: 'play none none reverse'
+        },
+        y: 60,
+        opacity: 1,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power2.out'
+    });
+
+    // Hover effect for coding profile cards
+    document.querySelectorAll('.coding-profile-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            gsap.to(card, {
+                scale: 1.05,
+                boxShadow: '0 10px 30px rgba(107,70,193,0.15)',
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+        card.addEventListener('mouseleave', () => {
+            gsap.to(card, {
+                scale: 1,
+                boxShadow: '0 4px 12px rgba(107,70,193,0.12)',
+                duration: 0.3,
+                ease: 'power2.out'
+            });
+        });
+    });
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
     
@@ -626,7 +661,7 @@ function initializeGSAPAnimations() {
     // Animate section title and divider
     aboutTimeline.from('.about-title-animate', {
         y: 50,
-        opacity: 0,
+        opacity: 1,
         duration: 1,
         ease: 'power2.out'
     })
@@ -644,7 +679,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         scale: 0.8,
-        opacity: 0,
+        opacity: 1,
         duration: 1.2,
         ease: 'back.out(1.7)'
     });
@@ -657,7 +692,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         scale: 0,
-        opacity: 0,
+        opacity: 1,
         duration: 1,
         stagger: 0.2,
         ease: 'back.out(1.7)'
@@ -671,7 +706,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         y: 30,
-        opacity: 0,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.1,
         ease: 'power2.out'
@@ -685,7 +720,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         x: 50,
-        opacity: 0,
+        opacity: 1,
         duration: 1,
         ease: 'power2.out'
     });
@@ -698,7 +733,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         y: 20,
-        opacity: 0,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.3,
         ease: 'power2.out'
@@ -712,7 +747,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         scale: 0.8,
-        opacity: 0,
+        opacity: 1,
         duration: 0.6,
         ease: 'back.out(1.7)'
     });
@@ -725,7 +760,7 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         y: 60,
-        opacity: 0,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.2,
         ease: 'power2.out'
@@ -739,14 +774,14 @@ function initializeGSAPAnimations() {
             toggleActions: 'play none none reverse'
         },
         x: -50,
-        opacity: 0,
+        opacity: 1,
         duration: 0.8,
         stagger: 0.2,
         ease: 'power2.out'
     });
     
     // Animate timeline line
-    gsap.from('.education-timeline::before', {
+    /* gsap.from('.education-timeline::before', {
         scrollTrigger: {
             trigger: '.about-education',
             start: 'top 80%',
@@ -756,7 +791,7 @@ function initializeGSAPAnimations() {
         transformOrigin: 'top',
         duration: 1.5,
         ease: 'power2.out'
-    });
+    }); */
     
     // Hover animations for interactive elements
     document.querySelectorAll('.achievement-card').forEach(card => {
@@ -781,19 +816,19 @@ function initializeGSAPAnimations() {
     gsap.to('.profile-glow', {
         rotation: 360,
         duration: 8,
-        repeat: -1,
+        repeat: 3,
         ease: 'none'
     });
     
     gsap.to('.achievement-glow', {
         rotation: 360,
         duration: 6,
-        repeat: -1,
+        repeat: 3,
         ease: 'none'
     });
     
     // Parallax effect for background elements
-    gsap.to('.about::before', {
+    /* gsap.to('.about::before', {
         yPercent: -50,
         ease: 'none',
         scrollTrigger: {
@@ -802,7 +837,7 @@ function initializeGSAPAnimations() {
             end: 'bottom top',
             scrub: true
         }
-    });
+    }); */
     
     // Add subtle floating animation to profile image
     gsap.to('.profile-image', {

@@ -1065,6 +1065,106 @@ section {
 }
 
 /* Certificates Section */
+.coding-profiles {
+    background: var(--gray-50);
+}
+
+.coding-profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-10);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-8) 0;
+    opacity: 1;
+}
+
+.coding-profile-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-6);
+    padding: var(--spacing-8);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+  
+}
+
+.coding-profile-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-purple);
+}
+
+.profile-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background: var(--purple-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(107, 70, 193, 0.12);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    display: block;
+    margin: auto;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+}
+
+.profile-info h3 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--primary-purple);
+    margin-bottom: 2px;
+}
+
+.profile-info a {
+    color: var(--gray-700);
+    text-decoration: none;
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+    word-break: break-all;
+}
+
+.profile-info a:hover {
+    color: var(--secondary-purple);
+    text-decoration: underline;
+}
+
+.profile-stats {
+    color: var(--gray-500);
+    font-size: var(--font-size-sm);
+    margin-top: 2px;
+}
+
+@media (max-width: 768px) {
+    .coding-profiles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-6);
+    }
+    .coding-profile-card {
+        flex-direction: row;
+        padding: var(--spacing-6);
+    }
+}
 .certificates {
     background: var(--gray-50);
 }
